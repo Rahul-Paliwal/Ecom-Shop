@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\AdminProfileController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Models\User;
 
@@ -53,3 +54,9 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
     $user=User::find($id);
     return view('dashboard',compact('user'));
 })->name('dashboard');
+
+// Admin Brand All Routes
+Route::prefix('brand')->group(function(){
+    Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
+    Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+});
