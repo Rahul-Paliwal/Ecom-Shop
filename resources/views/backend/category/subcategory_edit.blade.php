@@ -15,13 +15,13 @@
 <div class="col-12">
 
 <div class="box">
-   <div class="box-header with-border">
+   <div class="box-header with-border"> 
      <h3 class="box-title">Edit SubCategory </h3>
    </div>
    <!-- /.box-header -->
    <div class="box-body">
       <div class="table-responsive">
-      <form method="post" action="{{route('subcategory.update')}}" >
+      <form method="post" action="{{route('subcategory.update')}}" > csr
                     @csrf
                         <input type="hidden" name="id" value="{{$subcategory->id}}" >
                         <div class="form-group">
@@ -30,8 +30,8 @@
 									<select name="category_id"  class="form-control">
 										<option value="" selected="" disabled="" >Select Category</option>
 										@foreach($categories as $category)
-                                        <option value="{{$category->id}}" {{$category->id == $subcategory->category_id ? 'selected': ' ' }} > {{$category->category_name_en}}</option>
-                                        @endforeach
+                      <option value="{{$category->id}}" {{$category->id == $subcategory->category_id ? 'selected': ' ' }} > {{$category->category_name_en}}</option>
+                    @endforeach
 									</select>
                                     @error('category_id')
                                     <span class=" text-danger">{{$message}}</span>
