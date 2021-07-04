@@ -367,7 +367,7 @@
 				  <div class="box-header">
 					<h4 class="box-title">Product Multiple Image <strong>Update</strong></h4>
 				  </div>
-            <form method="post" action="{{route('update-product-image')}}" enctype="multipart/">
+            <form method="post" action="{{route('update-product-image')}}" enctype="multipart/form-data">
             @csrf
              <div class="row row-sm">
                 @foreach($multiImgs as $img)
