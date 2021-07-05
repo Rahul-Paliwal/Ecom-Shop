@@ -83,7 +83,7 @@ class BrandController extends Controller
                 'brand_slug_hi'=>str_replace(' ','-',$request->brand_name_hi),  
             ]);
             $notification=array(
-                'message'=>'Brand Updated Successfully !',
+                'message'=>'Brand Updated Without Image Successfully !',
                 'alert-type'=>'info'
             );
             return redirect()->route('all.brand')->with($notification); 
