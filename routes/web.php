@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Models\User;
 
 
@@ -51,6 +52,9 @@ Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileE
 Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePass'])->name('admin.change.password');
 Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePass'])->name('update.change.password');
+
+
+});
 // Admin Brand All Routes
 Route::prefix('brand')->group(function(){
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
@@ -116,7 +120,6 @@ Route::prefix('slider')->group(function(){
     Route::get('/inactive/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
 });
     
-});
 
 // User Routes
 Route::get('/', [IndexController::class, 'Index']);
@@ -132,3 +135,10 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
     return view('dashboard',compact('user'));
 })->name('dashboard');
 
+
+
+
+////////////////Frontend All Routes////////////////
+///////////////MultiLanguage Routes////////
+Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
+Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi.language');
