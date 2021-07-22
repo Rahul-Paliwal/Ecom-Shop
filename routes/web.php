@@ -142,3 +142,6 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 ///////////////MultiLanguage Routes////////
 Route::get('/language/english', [LanguageController::class, 'English'])->name('english.language');
 Route::get('/language/hindi', [LanguageController::class, 'Hindi'])->name('hindi.language');
+
+///////////////Frontend Product Detail Routes////////
+Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
