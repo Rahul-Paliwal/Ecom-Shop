@@ -146,7 +146,7 @@
                                             <div class="form-group">
 								             <h5>Product Tags En <span class="text-danger">*</span></h5>
 								             <div class="controls">
-                                             <input type="text" name="product_tags_en" value="Lorem,Ipsum,Amet" data-role="tagsinput" /></div>
+                                             <input type="text" name="product_tags_en"  data-role="tagsinput" /></div>
                                               @error('product_tags_en')
                                                 <span class=" text-danger">{{$message}}</span>
                                               @enderror
@@ -161,7 +161,7 @@
                                             <div class="form-group">
 								             <h5>Product Tags Hi <span class="text-danger">*</span></h5>
 								             <div class="controls">
-                                             <input type="text" name="product_tags_hi" value="Lorem,Ipsum,Amet" data-role="tagsinput" /></div>
+                                             <input type="text" name="product_tags_hi"  data-role="tagsinput" /></div>
                                               @error('product_tags_hi')
                                                 <span class=" text-danger">{{$message}}</span>
                                               @enderror
@@ -172,7 +172,7 @@
                                                 <div class="form-group">
                                                     <h5>Product Size En<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                    <input type="text" name="product_size_en" class="form-control" value="Small,Medium,Large" data-role="tagsinput"> </div>
+                                                    <input type="text" name="product_size_en" class="form-control"  data-role="tagsinput"> </div>
                                                     @error('product_size_en')
                                                         <span class=" text-danger">{{$message}}</span>
                                                     @enderror
@@ -182,7 +182,7 @@
                                               <div class="form-group">
                                                     <h5>Product Size Hi<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                    <input type="text" name="product_size_hi" class="form-control" value="Small,Medium,Large" data-role="tagsinput"> </div>
+                                                    <input type="text" name="product_size_hi" class="form-control"  data-role="tagsinput"> </div>
                                                     @error('product_size_hi')
                                                         <span class=" text-danger">{{$message}}</span>
                                                     @enderror
@@ -198,7 +198,7 @@
                                             <div class="form-group">
 								             <h5>Product Color En <span class="text-danger">*</span></h5>
 								             <div class="controls">
-                                             <input type="text" name="product_color_en" value="red,black,Amet" data-role="tagsinput" /></div>
+                                             <input type="text" name="product_color_en"  data-role="tagsinput" /></div>
                                               @error('product_color_en')
                                                 <span class=" text-danger">{{$message}}</span>
                                               @enderror
@@ -209,7 +209,7 @@
                                                 <div class="form-group">
                                                     <h5>Product Color Hi<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                    <input type="text" name="product_color_hi" class="form-control" value="Small,Medium,Large" data-role="tagsinput"> </div>
+                                                    <input type="text" name="product_color_hi" class="form-control"  data-role="tagsinput"> </div>
                                                     @error('product_color_hi')
                                                         <span class=" text-danger">{{$message}}</span>
                                                     @enderror

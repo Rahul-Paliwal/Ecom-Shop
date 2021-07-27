@@ -176,7 +176,7 @@
                                                 <div class="form-group">
                                                     <h5>Product Size En<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                    <input type="text" name="product_size_en" value="{{$products->product_size_en}}" class="form-control" value="Small,Medium,Large" data-role="tagsinput"> </div>
+                                                    <input type="text" name="product_size_en" value="{{$products->product_size_en}}" class="form-control"  data-role="tagsinput"> </div>
                                                     @error('product_size_en')
                                                         <span class=" text-danger">{{$message}}</span>
                                                     @enderror
@@ -186,7 +186,7 @@
                                               <div class="form-group">
                                                     <h5>Product Size Hi<span class="text-danger">*</span></h5>
                                                     <div class="controls">
-                                                    <input type="text" name="product_size_hi" value="{{$products->product_size_hi}}" class="form-control" value="Small,Medium,Large" data-role="tagsinput"> </div>
+                                                    <input type="text" name="product_size_hi" value="{{$products->product_size_hi}}" class="form-control"  data-role="tagsinput"> </div>
                                                     @error('product_size_hi')
                                                         <span class=" text-danger">{{$message}}</span>
                                                     @enderror

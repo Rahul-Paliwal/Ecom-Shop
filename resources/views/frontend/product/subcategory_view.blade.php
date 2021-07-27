@@ -1,7 +1,7 @@
 @extends('frontend.main_master')
 @section('content')
 @section('title')
-Tag Wise Product
+Sub Category Wise Product
 @endsection
 
 @php
@@ -78,8 +78,8 @@ $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
             <!-- /.sidebar-widget --> 
             <!-- ============================================== SIDEBAR CATEGORY : END ============================================== --> 
             
-                <!-- ============================================== PRICE SILDER============================================== -->
-                <div class="sidebar-widget wow fadeInUp">
+              <!-- ============================================== PRICE SILDER============================================== -->
+              <div class="sidebar-widget wow fadeInUp">
               <div class="widget-header">
                 <h4 class="widget-title">Price Slider</h4>
               </div>
@@ -415,12 +415,7 @@ $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
             <div class="text-right">
               <div class="pagination-container">
                 <ul class="list-inline list-unstyled">
-                  <li class="prev"><a href="#"><i class="fa fa-angle-left"></i></a></li>
-                  <li><a href="#">1</a></li>
-                  <li class="active"><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li class="next"><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                {{ $products->links()  }}
                 </ul>
                 <!-- /.list-inline --> 
               </div>

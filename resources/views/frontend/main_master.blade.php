@@ -6,6 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf_token" content="{{csrf_token()}}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -82,5 +83,147 @@
  }
  @endif 
 </script>
+
+<!-- Add to cart Model -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong><span id ="p_name"></span></strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <div class="row">
+               <div class="col-md-4">
+                 <div class="card" style="width: 18rem;">
+                     <img src=" " id="p_img" class="card-img-top" alt="..." style="height:200px; width:200px;">
+                     
+                  </div>
+               </div>
+               <div class="col-md-4">
+                <ul class="list-group">
+                  <li class="list-group-item">Product Price: <strong class="text-danger">$<span id="price"></span></strong>
+                     <del id="oldprice">$</del>
+                  </li>
+                  <li class="list-group-item">Product Code: <strong id="p_code"></strong></li>
+                  <li class="list-group-item">Category: <strong id="p_category"></strong></li>
+                  <li class="list-group-item">Brand: <strong id="p_brand"></strong></li>
+                  <li class="list-group-item">Stock: 
+                     <span id="available" class="badge badge-pill badge-success" style="background:green; color:white"></span>
+                     <span id="stockout" class="badge badge-pill badge-danger" style="background:red; color:white"></span>
+                  </li>
+                </ul>
+               </div>
+               <div class="col-md-4">
+                 <div class="form-group">
+                     <label for="exampleFormControlSelect1">Choose Color</label>
+                     <select class="form-control" id="exampleFormControlSelect1" name="color">
+                        <option></option>
+                        
+                     </select>
+                  </div> 
+
+                  <div class="form-group" id="sizeArea">
+                     <label for="exampleFormControlSelect1">Choose Size</label>
+                     <select class="form-control" id="exampleFormControlSelect1" name="size">
+                        <option></option>
+                       
+                     </select>
+                  </div> 
+
+                  <div class="form-group">
+                     <label for="exampleFormControlInput1">Qty</label>
+                     <input type="number" name="" class="form-control" id="exampleFormControlInput1" min="1" value="1">
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+               </div>
+            </div>   
+            <!-- End row -->
+      </div>
+      <!-- END modal body -->
+
+    </div>
+  </div>
+</div>
+<!-- End Add to cart model -->
+
+<script type="text/javascript">
+$.ajaxSetup({
+   headers:{
+      'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+   }
+})
+
+// Start Product_view modal 
+function productView(id){
+   // alert(id);
+   $.ajax({
+      type:'GET',
+      url:'/product/view/modal/'+id,
+      dataType:'json',
+      success:function(data){
+            // console.log(data);
+            $('#p_name').text(data.product.product_name_en);
+            $('#p_price').text(data.product.selling_price);
+            $('#p_code').text(data.product.product_code);
+            $('#p_category').text(data.product.category.category_name_en);
+            $('#p_brand').text(data.product.brand.brand_name_en);
+            $('#p_img').attr('src','/'+data.product.product_thumbnil);
+
+            // product price conditin
+            if(data.product.discount_price == null){
+               $('#price').text('');
+               $('#oldprice').text('');
+                  $('#price').text(data.product.selling_price);
+            }
+            else{
+               $('#price').text(data.product.discount_price);
+               $('#oldprice').text(data.product.selling_price);
+            }
+
+            // in stock condition
+            if(data.product.product_qty > 0){
+               $('#available').text('');
+               $('#stockout').text('');
+               $('#available').text('available');
+               }
+            else
+               {
+                  $('#available').text('');
+                  $('#stockout').text('');
+                  $('#stockout').text('stockout');
+
+                  }
+
+            // color & size
+            $('select[name="color"]').empty();
+            $.each(data.color,function(key,val){
+               $('select[name="color"]').append('<option value=" '+val+' "> '+ val +' </option>')
+            })
+            
+            
+            $('select[name="size"]').empty();
+            $.each(data.size,function(key,val){
+               $('select[name="size"]').append('<option value=" '+val+' ">'+val+' </option>')
+               if (data.size == "") 
+                  {
+                     $('#sizeArea').hide();
+                     }
+               else
+                  {
+                     $('#sizeArea').show();
+                     }
+            })
+
+      }
+
+   })
+}
+</script>
+
 </body>
 </html>
