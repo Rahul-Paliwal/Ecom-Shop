@@ -120,7 +120,7 @@
                <div class="col-md-4">
                  <div class="form-group">
                      <label for="exampleFormControlSelect1">Choose Color</label>
-                     <select class="form-control" id="exampleFormControlSelect1" name="color">
+                     <select class="form-control" id="color" name="color">
                         <option></option>
                         
                      </select>
@@ -128,7 +128,7 @@
 
                   <div class="form-group" id="sizeArea">
                      <label for="exampleFormControlSelect1">Choose Size</label>
-                     <select class="form-control" id="exampleFormControlSelect1" name="size">
+                     <select class="form-control" id="size" name="size">
                         <option></option>
                        
                      </select>
@@ -136,10 +136,11 @@
 
                   <div class="form-group">
                      <label for="exampleFormControlInput1">Qty</label>
-                     <input type="number" name="" class="form-control" id="exampleFormControlInput1" min="1" value="1">
+                     <input type="number" name="" class="form-control" id="qty" min="1" value="1">
                   </div>
                   
-                  <button type="submit" class="btn btn-primary mb-2">Add to Cart</button>
+                  <input type="hidden" id="product_id">
+                  <button type="submit" class="btn btn-primary mb-2" onclick="addToCart()">Add to Cart</button>
                </div>
             </div>   
             <!-- End row -->
@@ -173,6 +174,9 @@ function productView(id){
             $('#p_category').text(data.product.category.category_name_en);
             $('#p_brand').text(data.product.brand.brand_name_en);
             $('#p_img').attr('src','/'+data.product.product_thumbnil);
+            $('#product_id').val(id);
+            $('#qty').val(1);
+            
 
             // product price conditin
             if(data.product.discount_price == null){
@@ -223,6 +227,34 @@ function productView(id){
 
    })
 }
+// End
+
+
+// Start add to cart
+   function addToCart(){
+      var product_name = $('#p_name').text();
+      var id=$('#product_id').val();
+      var color=$('#color option:selected').text();
+      var size=$('#size option:selected').text();
+      var qty=$('#qty').val();
+      $.ajax({
+         type:'POST',
+         dataType:'json',
+         data:{
+            color:color, 
+            size:size,
+            qty:qty,
+            product_name:product_name
+         },
+         url:"/cart/data/store/"+id,
+         success:function(data){
+            console.log(data);
+         }
+      })
+
+   }
+// end
+
 </script>
 
 </body>
