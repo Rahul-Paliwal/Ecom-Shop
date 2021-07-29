@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
+
 class CartController extends Controller
 {
     public function AddToCart(Request $request,$id){
@@ -42,8 +43,28 @@ class CartController extends Controller
                     'color' => $request->size
                 ],
                 ]);
-                return response()->json(['success'=>'Successfully Added O   n Your Cart ']);
+                return response()->json(['success'=>'Successfully Added On Your Cart ']);
         }
 
     }
+
+    public function AddMiniCart(){
+        $carts =Cart::content();
+        $cartQty=Cart::count();
+        $cartTotal=Cart::total();
+
+        return response()->json(array(
+            'carts'=>$carts,
+            'cartQty'=>$cartQty,
+            'cartTotal'=>round($cartTotal)
+
+        ));
+    }
+
+    public function DelMiniCart($rowId){
+        Cart::remove($rowId);
+        return response()->json(['success'=>'Product Removed From Your Cart']);
+
+    }
+    
 }

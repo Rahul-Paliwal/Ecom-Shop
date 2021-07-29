@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,6 +59,8 @@
 <script src="{{asset('frontend/assets/js/wow.min.js')}}"></script> 
 <script src="{{asset('frontend/assets/js/scripts.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <script>
  @if(Session::has('message'))
@@ -91,7 +92,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel"><strong><span id ="p_name"></span></strong></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <button type="button" class="close" id="closeModal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
@@ -244,11 +245,33 @@ function productView(id){
             color:color, 
             size:size,
             qty:qty,
-            product_name:product_name
+            product_name:product_name,
+            _token: '{{csrf_token()}}'
          },
-         url:"/cart/data/store/"+id,
+         url: "/cart/data/store/"+id,
          success:function(data){
-            console.log(data);
+            miniCart();
+            $('#closeModal').click();
+            // console.log(data);
+            // start message
+            const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                }      // End 
          }
       })
 
@@ -256,6 +279,80 @@ function productView(id){
 // end
 
 </script>
+<script type="text/javascript">
+      function miniCart(){
+       $.ajax({
+          type:'GET',
+          url:'/product/mini/cart/',
+          dataType:'json',
+          success:function(response){
+            //  console.log(response);
+            $('span[id="cartSubTotal"]').text(response.cartTotal);
+                $('#cartQty').text(response.cartQty);
+
+            
+            var miniCart = ""
+                $.each(response.carts, function(key,val){
+                    miniCart += `<div class="cart-item product-summary">
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <div class="image"> <a href="detail.html"><img src="/${val.options.image}" alt=""></a> </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <h3 class="name"><a href="index.php?page-detail">${val.name}</a></h3>
+                      <div class="price">${val.price}*${val.qty}</div>
+                    </div>
+                    <div class="col-xs-1 action"> <button type="submit" id="${val.rowId}" onClick="miniCartDelete(this.id)"><i class="fa fa-trash"></i></button> </div>
+                  </div>
+                </div>
+                <!-- /.cart-item -->
+                <div class="clearfix"></div>
+                <hr>`
+                });
+                
+                $('#miniCart').html(miniCart);
+         
+         
+          }
+
+       })  
+      }
+      miniCart();
+      // Start minicart delete
+         function miniCartDelete(rowId){
+            $.ajax({
+               type:'GET',
+               url:'/minicart/product-delete/'+rowId,
+               dataType:'json',
+               success:function(data){
+                  miniCart();
+                  // start message
+            const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                }      // End 
+
+               } 
+               // end Function
+            })
+         }
+      // End minicart delete
+</script>
+ 
 
 </body>
 </html>

@@ -116,7 +116,7 @@
 </div><!-- /.gallery-holder -->        			
 					<div class='col-sm-6 col-md-7 product-info-block'>
 						<div class="product-info">
-							<h1 class="name">
+							<h1 class="name" id="p_name">
 							@if(session()->get('language')=='hindi') {{$product->product_name_hi}} 
                						 @else
                 			{{$product->product_name_en}} 
@@ -198,7 +198,7 @@
 						<div class="col-sm-6">
 						 <div class="form-group">
 							<label class="info-title control-label">Select Color <span></span></label>
-							<select class="form-control unicase-form-control selectpicker" style="display: none;">
+							<select class="form-control unicase-form-control selectpicker" style="display: none;" id="color">
 								<option selected="" disabled="" >--Select Color--</option>
 								@foreach($product_color_en as $color)
 								<option value="{{$color}}">{{ucwords($color)}}</option>
@@ -208,14 +208,17 @@
 						</div>
 
 						<div class="col-sm-6">
-						 <div class="form-group">
+						 <div class="form-group" >
+							@if($product->product_size_en==null)
+
+							@else	
 							<label class="info-title control-label">Select Size <span></span></label>
-							<select class="form-control unicase-form-control selectpicker" style="display: none;">
+							<select class="form-control unicase-form-control selectpicker" style="display: none;" id="size">
 								<option selected="" disabled="">--Select Size--</option>
 								@foreach($product_size_en as $size)
 								<option value="{{$size}}">{{ucwords($size)}}</option>
 								@endforeach
-								
+							@endif	
 							</select>
 						 </div>			
 						</div>
@@ -238,17 +241,15 @@
 									<div class="col-sm-2">
 										<div class="cart-quantity">
 											<div class="quant-input">
-								                <div class="arrows">
-								                  <div class="arrow plus gradient"><span class="ir"><i class="icon fa fa-sort-asc"></i></span></div>
-								                  <div class="arrow minus gradient"><span class="ir"><i class="icon fa fa-sort-desc"></i></span></div>
-								                </div>
-								                <input type="text" value="1">
+								
+								                <input type="number" min="1" value="1" id="qty">
 							              </div>
 							            </div>
 									</div>
 
+									<input type="hidden" id="product_id" value="{{$product->id}}" min="1">
 									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										<button type="submit" onclick="addToCart()" onclick="" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
 									</div>
 
 									
