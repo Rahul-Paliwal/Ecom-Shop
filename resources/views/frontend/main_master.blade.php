@@ -257,18 +257,19 @@ function productView(id){
             const Toast = Swal.mixin({
                       toast: true,
                       position: 'top-end',
-                      icon: 'success',
                       showConfirmButton: false,
                       timer: 3000
                     })
                 if ($.isEmptyObject(data.error)) {
                     Toast.fire({
                         type: 'success',
+                        icon: 'success',
                         title: data.success
                     })
                 }else{
                     Toast.fire({
                         type: 'error',
+                        icon: 'error',
                         title: data.error
                     })
                 }      // End 
@@ -296,7 +297,7 @@ function productView(id){
                     miniCart += `<div class="cart-item product-summary">
                   <div class="row">
                     <div class="col-xs-4">
-                      <div class="image"> <a href="detail.html"><img src="/${val.options.image}" alt=""></a> </div>
+                      <div class="image"> <a href="detail.html"><img src="${val.options.image}" alt=""></a> </div>
                     </div>
                     <div class="col-xs-7">
                       <h3 class="name"><a href="index.php?page-detail">${val.name}</a></h3>
@@ -330,18 +331,19 @@ function productView(id){
             const Toast = Swal.mixin({
                       toast: true,
                       position: 'top-end',
-                      icon: 'success',
                       showConfirmButton: false,
                       timer: 3000
                     })
                 if ($.isEmptyObject(data.error)) {
                     Toast.fire({
                         type: 'success',
+                        icon: 'success',
                         title: data.success
                     })
                 }else{
                     Toast.fire({
                         type: 'error',
+                        icon: 'error',
                         title: data.error
                     })
                 }      // End 
@@ -352,7 +354,126 @@ function productView(id){
          }
       // End minicart delete
 </script>
- 
+<!-- start add to wishlist -->
+<script type="text/javascript" >
+function addToWishList(product_id){
+   $.ajax({
+      type:"POST",
+      dataType:"json",
+      data:{ _token: '{{csrf_token()}}'},
+      url:"/add-to-wishlist/"+product_id,
+      success:function(data){
+                // start message
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }      // End 
+  
+      }
+   })
+}
+</script>
+<!-- end add to wishlist -->
+<!--Start View WishlistData -->
+<script type="text/javascript">
+      function wishlist(){
+       $.ajax({
+          type:'GET',
+          url:'/user/get-wishlist-product/',
+          dataType:'json',
+          success:function(response){
+            //     console.log(response);
+            
+            var rows = ""
+                $.each(response, function(key,val){
+                    rows += `				<tr>
+					<td class="col-md-2"><img src="/${val.product.product_thumbnil}" alt="imga"></td>
+					<td class="col-md-7">
+						<div class="product-name"><a href="#">${val.product.product_name_en}</a></div>
+						<div class="rating">
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star rate"></i>
+							<i class="fa fa-star non-rate"></i>
+							<span class="review">( 06 Reviews )</span>
+						</div>
+						<div class="price">
+							${val.product.discount_price ==null ?
+                      `${val.product.selling_price}` :
+                      `${val.product.discount_price} <span>${val.product.selling_price}</span>`
+                     
+                     }
+						</div>
+					</td>
+					<td class="col-md-2">
+               <button data-toggle="modal" data-target="#exampleModal" class="btn btn-primary icon" type="button" title="Add Cart" id="${val.product_id}" onclick="productView(this.id)">Add to Cart </button>
+					</td>
+					<td class="col-md-1 close-btn">
+						<button type="submit" id="${val.id}" onclick="wishlistDelete(this.id)" class=""><i class="fa fa-times"></i></button>
+					</td>
+				</tr>`
+                });
+                
+                $('#wishlist').html(rows);
+         
+         
+          }
 
+       })  
+      }
+      wishlist();
+     // Start wishlsit delete
+     function wishlistDelete(id){
+            $.ajax({
+               type:'GET',
+               url:'/user/wishlist-delete/'+id,
+               dataType:'json',
+               success:function(data){
+                  wishlist();
+                  // start message
+            const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }      // End 
+
+               } 
+               // end Function
+            })
+         }
+      // End wishlist delete
+</script>
+
+<!-- End View WishlistData -->
 </body>
 </html>
