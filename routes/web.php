@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CartPageController;
 use App\Models\User;
 
 
@@ -181,5 +182,12 @@ Route::get('/wishlist', [WishlistController::class, 'ViewWishList'])->name('wish
 Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishListProduct']);
 Route::get('/wishlist-delete/{id}', [WishlistController::class, 'DeleteWishListProduct']);
 
-
 });
+
+
+// Cart Page
+Route::get('/cart', [CartPageController::class, 'MyCart'])->name('cart');
+Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+Route::get('/user/cart-delete/{rowId}', [CartPageController::class, 'DeleteCartProduct']);
+Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
+Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
