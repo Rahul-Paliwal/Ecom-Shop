@@ -41,11 +41,12 @@ $categories = App\Models\Category::orderBy('category_name_en','ASC')->get();
                 <div class="accordion">
                     @foreach($categories as $category)
                   <div class="accordion-group">
-                    <div class="accordion-heading"> <a href="#collapse{{$category->id}}" data-toggle="collapse" class="accordion-toggle collapsed"> @if(session()->get('language')=='hindi') {{$category->category_name_hi}} 
-                @else
-                {{$category->category_name_en}} 
+                    <div class="accordion-heading"> <a href="#collapse{{$category->id}}" data-toggle="collapse" class="accordion-toggle collapsed">
+                       @if(session()->get('language')=='hindi') {{$category->category_name_hi}} 
+                        @else
+                        {{$category->category_name_en}} 
 
-                @endif
+                        @endif
                </a> </div>
                     <!-- /.accordion-heading -->
                     <div class="accordion-body collapse" id="collapse{{$category->id}}" style="height: 0px;">
