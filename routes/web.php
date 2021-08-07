@@ -225,3 +225,12 @@ Route::prefix('shipping')->group(function(){
      Route::post('/state/update/{id}', [ShippingAreaController::class, 'StateUpdate'])->name('state.update');
      Route::get('/state/delete/{id}', [ShippingAreaController::class, 'StateDelete'])->name('state.delete');    
 });
+
+// Frontend Apply Coupon
+Route::post('/apply-coupon', [CartController::class, 'ApplyCoupon']);   
+
+// Frontend  Coupon CAlculation
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);  
+
+// Frontend  Coupon Remove
+Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);  
