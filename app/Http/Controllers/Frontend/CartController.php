@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Product;
 use App\Models\Wishlist;
+use App\Models\ShipDivision;
 use App\Models\Coupon;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -145,4 +146,33 @@ public function CouponCalculation(){
      return response()->json(['success','Coupon Removed Successfully !']);
  }
 // End Coupon Remove
+
+// Start checkout
+public function CheckoutCreate(){
+  if(Auth::check()){
+      if(Cart::total()>0){
+        $carts = Cart::content();
+        $cartQty = Cart::count();
+        $cartTotal = Cart::total();
+        $divisions=ShipDivision::orderby('division_name','ASC')->get();
+        return view('frontend.checkout.checkout_view',compact('carts','cartQty','cartTotal','divisions'));
+      }else{
+        $notification=array(
+            'message'=>'Shop At List One Product First!',
+            'alert-type'=> 'error'
+        );      
+        return redirect()->to('/')->with($notification);        
+      }
+
+  }
+  else
+  {
+    $notification=array(
+        'message'=>'You Need To Login First',
+        'alert-type'=> 'error'
+    );      
+    return redirect()->route('login')->with($notification);
+  }
+}
+// End checkout
 }

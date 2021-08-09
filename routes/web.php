@@ -13,6 +13,7 @@ use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Models\User;
@@ -234,3 +235,15 @@ Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
 
 // Frontend  Coupon Remove
 Route::get('/coupon-remove', [CartController::class, 'CouponRemove']);  
+
+// Frontend  Checkout 
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');  
+
+// Frontend  Checkout district ajax dropdown 
+Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);  
+
+// Frontend  Checkout state ajax dropdown 
+Route::get('/state-get/ajax/{district_id}', [CheckoutController::class, 'StateGetAjax']);
+
+// Frontend  Checkout store
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
