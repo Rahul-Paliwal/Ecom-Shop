@@ -111,10 +111,11 @@ class IndexController extends Controller
        }
 
        public function TagWiseProduct($tag){
-        $products=Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_hi')->orderBy('id','DESC')->paginate(3);
-        $categories = Category::orderBy('category_name_en','ASC')->get();
-        return view('frontend.tags.tags_view',compact('products','categories'));
-       }
+		$products = Product::where('status',1)->where('product_tags_en',$tag)->where('product_tags_hi',$tag)->orderBy('id','DESC')->paginate(3);
+		$categories = Category::orderBy('category_name_en','ASC')->get();
+		return view('frontend.tags.tags_view',compact('products','categories'));
+
+	}
 
        
        public function SubCatWiseProduct($subcat_id,$slug){
@@ -145,4 +146,5 @@ class IndexController extends Controller
             
          ));  
        }
+       
 }

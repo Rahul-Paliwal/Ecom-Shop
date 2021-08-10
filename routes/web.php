@@ -14,6 +14,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Models\User;
@@ -180,11 +181,11 @@ Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishl
 
 Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'],function(){
 
-// wishlist page
-Route::get('/wishlist', [WishlistController::class, 'ViewWishList'])->name('wishlist');
-Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishListProduct']);
-Route::get('/wishlist-delete/{id}', [WishlistController::class, 'DeleteWishListProduct']);
-
+        // wishlist page
+        Route::get('/wishlist', [WishlistController::class, 'ViewWishList'])->name('wishlist');
+        Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishListProduct']);
+        Route::get('/wishlist-delete/{id}', [WishlistController::class, 'DeleteWishListProduct']);
+        Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
 });
 
 

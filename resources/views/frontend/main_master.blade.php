@@ -26,7 +26,7 @@
 
 <!-- Icons/Glyphs -->
 <link rel="stylesheet" href="{{asset('frontend/assets/css/font-awesome.css')}}">
-
+<script src="https://js.stripe.com/v3/"></script>
 <!-- Fonts -->
 <link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
@@ -60,6 +60,7 @@
 <script src="{{asset('frontend/assets/js/scripts.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
 <script>
@@ -620,7 +621,10 @@ function applyCoupon(){
       success:function(data){
                   // Start Message 
                   CouponCalc();
-                  $('#couponField').hide();
+                  if(data.validity == true){
+                     $('#couponField').hide();
+                  }
+
                   const Toast = Swal.mixin({
                toast: true,
                position: 'top-end',
