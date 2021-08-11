@@ -15,6 +15,8 @@ use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\CashController;
+use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Models\User;
@@ -186,6 +188,11 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishListProduct']);
         Route::get('/wishlist-delete/{id}', [WishlistController::class, 'DeleteWishListProduct']);
         Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+        Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
+        
+        Route::get('/my/orders', [AllUserController::class, 'MyOrder'])->name('my.orders');
+        Route::get('/order-details/{order_id}', [AllUserController::class, 'OrderDetails']);
+        Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
 });
 
 

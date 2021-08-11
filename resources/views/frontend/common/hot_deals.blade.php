@@ -40,7 +40,7 @@
                   @if ($product->discount_price == NULL)
  <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>  </div>
      @else
- <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span class="price-before-discount">${{ $product->selling_price }}</span> </div>
+ <div class="product-price"> <span class="price"> ₹{{ $product->discount_price }} </span> <span class="price-before-discount">₹{{ $product->selling_price }}</span> </div>
      @endif
                   <!-- /.product-price --> 
                   

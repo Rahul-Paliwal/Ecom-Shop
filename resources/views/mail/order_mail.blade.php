@@ -59,7 +59,7 @@ Thank you for shopping with ECom Shop!  .</p>
 </td>
 
 <td> Invoice No : {{ $order['invoice_no'] }}</td> <br>
-<td> Amount : {{ $order['amount'] }}</td><br>
+<td> Amount : ₹{{ $order['amount'] }}</td><br>
 <td> Name : {{ $order['name'] }}</td><br>
 <td> Email : {{ $order['email'] }}</td><br>
 

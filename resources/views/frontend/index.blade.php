@@ -42,7 +42,7 @@ Ecom Shop
           <div class="product-info">
             <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}">@if(session()->get('language') == 'hindi') {{ $product->product_name_hin }} @else {{ $product->product_name_en }} @endif</a></h3>
             <div class="rating rateit-small"></div>
- <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span> </div>
+ <div class="product-price"> <span class="price"> ₹{{ $product->selling_price }} </span> </div>
             <!-- /.product-price --> 
 
           </div>
@@ -96,7 +96,7 @@ Ecom Shop
                           <div class="product-info">
                             <h3 class="name"><a href="{{ url('product/details/'.$product->id.'/'.$product->product_slug_en ) }}">@if(session()->get('language') == 'hindi') {{ $product->product_name_hin }} @else {{ $product->product_name_en }} @endif</a></h3>
                             <div class="rating rateit-small"></div>
-                            <div class="product-price"> <span class="price"> ${{ $product->selling_price }}  </span> </div>
+                            <div class="product-price"> <span class="price"> ₹{{ $product->selling_price }}  </span> </div>
                             <!-- /.product-price --> 
                             
                           </div>
@@ -274,9 +274,9 @@ Ecom Shop
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
                           @if($product->discount_price == NULL)
-                          <div class="product-price"> <span class="price"> {{$product->selling_price}} </span>  </div>                         
+                          <div class="product-price"> <span class="price">₹ {{$product->selling_price}} </span>  </div>                         
                            @else
-                          <div class="product-price"> <span class="price"> {{$product->discount_price}} </span> <span class="price-before-discount">{{$product->selling_price}}</span> </div>
+                          <div class="product-price"> <span class="price">₹ {{$product->discount_price}} </span> <span class="price-before-discount">₹{{$product->selling_price}}</span> </div>
                         @endif
                           
                           <!-- /.product-price --> 
@@ -341,7 +341,7 @@ Ecom Shop
                           @endif</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"> {{$product->selling_price}} </span> <span class="price-before-discount">{{$product->selling_price}}</span> </div>
+                          <div class="product-price"> <span class="price">₹ {{$product->selling_price}} </span> <span class="price-before-discount">₹ {{$product->selling_price}}</span> </div>
                           <!-- /.product-price --> 
                           
                         </div>
@@ -449,7 +449,7 @@ Ecom Shop
                           @endif</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"> {{$product->selling_price}} </span> <span class="price-before-discount">{{$product->selling_price}}</span> </div>
+                          <div class="product-price"> <span class="price">₹ {{$product->selling_price}} </span> <span class="price-before-discount">₹ {{$product->selling_price}}</span> </div>
                           <!-- /.product-price --> 
                           
                         </div>
@@ -523,9 +523,9 @@ Ecom Shop
           <div class="description"></div>
 
          @if ($product->discount_price == NULL)
-    <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>  </div>
+    <div class="product-price"> <span class="price"> ₹{{ $product->selling_price }} </span>  </div>
          @else
- <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+ <div class="product-price"> <span class="price"> ₹{{ $product->discount_price }} </span> <span class="price-before-discount">₹ {{ $product->selling_price }}</span> </div>
          @endif
 
 
@@ -605,9 +605,9 @@ Ecom Shop
           <div class="description"></div>
 
          @if ($product->discount_price == NULL)
-    <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>  </div>
+    <div class="product-price"> <span class="price"> ₹{{ $product->selling_price }} </span>  </div>
          @else
- <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+ <div class="product-price"> <span class="price"> ₹{{ $product->discount_price }} </span> <span class="price-before-discount">₹ {{ $product->selling_price }}</span> </div>
          @endif
 
 
@@ -688,9 +688,9 @@ Ecom Shop
           <div class="description"></div>
 
          @if ($product->discount_price == NULL)
-    <div class="product-price"> <span class="price"> ${{ $product->selling_price }} </span>  </div>
+    <div class="product-price"> <span class="price"> ₹{{ $product->selling_price }} </span>  </div>
          @else
- <div class="product-price"> <span class="price"> ${{ $product->discount_price }} </span> <span class="price-before-discount">$ {{ $product->selling_price }}</span> </div>
+ <div class="product-price"> <span class="price"> ₹{{ $product->discount_price }} </span> <span class="price-before-discount">₹ {{ $product->selling_price }}</span> </div>
          @endif
 
 
