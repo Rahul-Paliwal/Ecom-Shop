@@ -1,15 +1,33 @@
-@extends('frontend.main_master')
-@section('content')
-<div class="body-content">
-    <div class="container">
-        <div class="row">
-        @include('frontend.common.user_sidebar')
-            <div class="col-md-5 ">
-                <div class="card">
-                    <div class="card-header"><h4>Shipping Details</h4></div>
-                    <hr>
-                    <div class="card-body" style="background:#d5eff39c;">
-                        <table class="table">
+@extends('admin.admin_master')
+@section('admin')
+  <!-- Content Wrapper. Contains page content -->
+  
+	  <div class="container-full">
+		<!-- Content Header (Page header) -->
+        <div class="content-header">
+			<div class="d-flex align-items-center">
+				<div class="mr-auto">
+					<h3 class="page-title">Order Details</h3>
+					<div class="d-inline-block align-items-center">
+						<nav>
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="#"><i class="mdi mdi-home-outline"></i></a></li>
+								<li class="breadcrumb-item" aria-current="page">Order Details</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Main content -->
+		<section class="content">
+		  <div class="row">
+            <div class="col-md-6 col-12">
+				<div class="box box-bordered border-primary">
+				  <div class="box-header with-border">
+					<h4 class="box-title"><strong>Shipping Details</strong></h4>
+				  </div>
+                  <table class="table">
                             <tr>
                                 <th>Shipping Name : </th>
                                 <th>{{$order->name}} </th>
@@ -43,18 +61,15 @@
                                 <th>{{$order->order_date}}</th>
                             </tr>  
                         </table>
-                    </div>
+				</div>
+			</div>  
 
-                </div>
-            </div>
-
-            <div class="col-md-5 ">
-                <div class="card">
-                    <div class="card-header"><h4>Order Details <span  class="text-danger">Invoice: {{$order->invoice_no}}</span></h4></div>
-                    <hr>
-                    
-                    <div class="card-body" style="background:#d5eff39c;">
-                        <table class="table">
+            <div class="col-md-6 col-12">
+				<div class="box box-bordered border-primary">
+				  <div class="box-header with-border">
+					<h4 class="box-title"><strong>Order Details</strong> <span  class="text-danger">Invoice: {{$order->invoice_no}}</span></h4>
+				  </div>
+                  <table class="table">
                             <tr>
                                 <th>Name : </th>
                                 <th>{{$order->user->name}} </th>
@@ -92,16 +107,16 @@
                                 <th>{{$order->order_date}}</th>
                             </tr>  
                         </table>
-                    </div>
+				</div>
+			</div>  
 
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table  class="table">
-                            <thead style="background:#d8d5d5;">
+            <div class="col-md-12 col-12">
+				<div class="box box-bordered border-primary">
+				  <div class="box-header with-border">
+				  </div>
+                  <table  class="table">
+                            <thead>
                                 <tr>
                                 <td class="col-md-1">
                                         <label for="">Image</label>
@@ -127,7 +142,7 @@
                                 </tr>
                                     
                                 </thead>
-                            <tbody style="background:#d5eff39c;">
+                            <tbody >
                                 
                                 @foreach($orderItem as $item)
                                 <tr>
@@ -156,22 +171,16 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>  
-                </div>
+				</div>
+			</div>  
+ 
+
+
             </div>
-
-            @if($order->status !=='delivered')
-
-            @else
-            <div class="form-group">
-                <label for="label">Order Return Reason</label>
-                <textarea name="" id="" class="form-control" cols="30" rows="05" >Return Reason</textarea>
-            </div>
-            @endif    
-
-        </div>
-    </div>
-
-</div>
-
+		  <!-- /.row -->
+		</section>
+		<!-- /.content -->
+	  
+	  </div>
+  
 @endsection
