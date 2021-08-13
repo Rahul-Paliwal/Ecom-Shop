@@ -40,8 +40,8 @@
         <td> <span class="badge badge-pill badge-primary">{{ $item->status }} </span></td>
 		<td width="30%">
             <a href="{{ route('pending.orders.details',$item->id) }}" class="btn btn-info" title="Edit Data"><i class="fa fa-eye"></i> </a>
-            <a href="{{ route('coupon.delete',$item->id) }}" class="btn btn-danger" title="Delete Data" id="delete">
- 	<i class="fa fa-trash"></i></a>
+			<a href="{{ route('invoice.download',$item->id) }}" class="btn btn-danger" title="Invoice Download" target="blank">
+ 	<i class="fa fa-download"></i></a>
 		</td>
 							 
 	 </tr>

@@ -103,6 +103,25 @@
                                 <th><span class="badge badge-pill badge-warning" style="background:#12cca7;">{{$order->status}}</span></th>
                             </tr>  
                             <tr>
+                                <th></th>
+                                <th>
+                                    @if($order->status== 'Pending')
+                                    <a href="{{route('pending-confirm',$order->id)}}" id="confirm" class="btn btn-block btn-success">Confirm Order</a>
+                                    @elseif($order->status == 'Confirm')
+                                    <a href="{{route('confirm-processing',$order->id)}}" id="processing" class="btn btn-block btn-success">Processing Order</a>
+                                    @elseif($order->status == 'Processing')
+                                    <a href="{{route('processing-picked',$order->id)}}" id="picked" class="btn btn-block btn-success">Picked Order</a>
+                                    @elseif($order->status == 'Picked')
+                                    <a href="{{route('picked-shipped',$order->id)}}" id="shipped" class="btn btn-block btn-success">Shipped Order</a>
+                                    @elseif($order->status == 'Shipped')
+                                    <a href="{{route('shipped-delivered',$order->id)}}" id="delivered" class="btn btn-block btn-success">Delivered Order</a>
+                                    <!-- @elseif($order->status == 'cancel')
+                                    <a href="{{route('cancel',$order->id)}}" id="cancel" class="btn btn-block btn-success">Delivered Order</a> -->
+                                    @endif
+                                </th>
+                            </tr>  
+           
+                            <tr>
                                 <th>Order Date : </th>
                                 <th>{{$order->order_date}}</th>
                             </tr>  

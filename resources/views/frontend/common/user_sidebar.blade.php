@@ -12,7 +12,11 @@
                 </a>
                 <a href="{{route('change.password')}}" class="btn btn-primary btn-sm btn-block">Change Password
                 </a>
-                <a href="{{route('my.orders')}}" class="btn btn-primary btn-sm btn-block">My Order
+                <a href="{{route('my.orders')}}" class="btn btn-primary btn-sm btn-block">My Orders
+                </a>
+                <a href="{{route('return.orders.list')}}" class="btn btn-primary btn-sm btn-block">Return Orders
+                </a>
+                <a href="{{route('canceled.orders')}}" class="btn btn-primary btn-sm btn-block">Canceled Orders
                 </a>
                 <a href="{{route('user.logout')}}" class="btn btn-danger btn-sm btn-block">Logout
                 </a>
