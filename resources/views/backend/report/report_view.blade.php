@@ -3,45 +3,41 @@
 
 	  <div class="container-full">
 		<!-- Content Header (Page header) -->
-		
-
+      
+      
 		<!-- Main content -->
 		<section class="content">
 		  <div class="row">
-         
-
-
-
+      
 <div class="col-4">
-
+     
 <div class="box">
    <div class="box-header with-border">
      <h3 class="box-title">Search By Date </h3>
    </div>
    <!-- /.box-header -->
-   <div class="box-body">
+    <div class="box-body">
       <div class="table-responsive">
-      <form method="post" action="{{route('search-by-date')}}" >
+        <form method="post" action="{{route('search-by-date')}}" >
                     @csrf
 					  	
-                         
-                                 <div class="form-group">
+                  <div class="form-group">
 								   <h5>Select Date<span class="text-danger">*</span></h5>
 								    <div class="controls">
-									  <input type="date" name="date" class="form-control" > 
+									    <input type="date" name="date" class="form-control" > 
                                     @error('date')
                                     <span class=" text-danger">{{$message}}</span>
                                     @enderror
-                                    </div>
-							     </div>
+                    </div>
+							    </div>
                  
-						<div class="text-xs-right">
+						 <div class="text-xs-right">
 							<input type="submit" value="search" class="btn btn-rounded btn-primary mb-5">
-						</div>
-					</form>
+						 </div>
+			  </form>
       </div> 
-   </div>
-   <!-- /.box-body -->
+    </div>
+    <!-- /.box-body -->
  </div>
  <!-- /.box -->          
 </div>
@@ -133,7 +129,7 @@
       <div class="table-responsive">
       <form method="post" action="{{route('search-by-year')}}">
                     @csrf
-					  	
+
                     <div class="form-group">
                             <h5>Select Year  <span class="text-danger">*</span></h5>
                             <div class="controls">
@@ -154,10 +150,8 @@
                         @enderror 
                         </div>
 	                </div> 
-                          
-                 
-						
-					
+            
+					  
 						<div class="text-xs-right">
 							<input type="submit" value="search" class="btn btn-rounded btn-primary mb-5">
 						</div>
@@ -174,7 +168,7 @@
 
 
 
-		
+  
 		</section>
 		<!-- /.content -->
 	  

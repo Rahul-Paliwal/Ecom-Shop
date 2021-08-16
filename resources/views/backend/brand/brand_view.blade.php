@@ -12,7 +12,7 @@
 
 <div class="box">
    <div class="box-header with-border">
-     <h3 class="box-title">Brand Lists</h3>
+     <h3 class="box-title">Brand Lists <span class="badge badge-pill badge-success ">{{count($brands)}}</span></h3>
    </div>
    <!-- /.box-header -->
    <div class="box-body">

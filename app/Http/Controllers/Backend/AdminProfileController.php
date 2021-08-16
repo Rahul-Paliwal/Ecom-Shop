@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\Models\Admin;
+use App\Models\User;
 use Auth;
 
 class AdminProfileController extends Controller
@@ -59,10 +60,15 @@ class AdminProfileController extends Controller
         }
         else
         $notification=array(
-            'message'=>'Password Incoorect!',
+            'message'=>'Password Incorrect!',
             'alert-type'=>'error'
         );
         return redirect()->back()->with($notification);
        
+    }
+
+    public function AllUsers(){
+        $users=User::latest()->get();
+        return view('backend.user.all_user',compact('users'));
     }
 }
