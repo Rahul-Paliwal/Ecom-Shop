@@ -166,7 +166,7 @@
                 @php
                     $order=App\Models\Order::where('id',$order->id)->where('return_reason','=',NULL)->first();
                 @endphp
-
+    
                 @if($order)
                 <form action="{{route('return.order',$order->id)}}" method="post" >
                     @csrf
@@ -174,7 +174,7 @@
                         <label for="label">Order Return Reason</label>
                         <textarea name="return_reason" id="" class="form-control" cols="30" rows="05" >Return Reason</textarea>
                     </div>
-                    <button type="submit" class="btn btn-danger">Submit</button>
+                    <button type="submit" class="btn btn-danger">Order Return</button>
                 </form>
                 @else
                     <span class="badge badge-pill badge-warning" style="background:red;">Return Order Request</span>

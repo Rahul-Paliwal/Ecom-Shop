@@ -457,7 +457,7 @@
                           @endif</a></h3>
                           <div class="rating rateit-small"></div>
                           <div class="description"></div>
-                          <div class="product-price"> <span class="price"> {{$product->selling_price}} </span> <span class="price-before-discount">{{$product->selling_price}}</span> </div>
+                          <div class="product-price"> <span class="price">₹ {{$product->selling_price}} </span> <span class="price-before-discount">₹ {{$product->selling_price}}</span> </div>
                           <!-- /.product-price --> 
                           
                         </div>

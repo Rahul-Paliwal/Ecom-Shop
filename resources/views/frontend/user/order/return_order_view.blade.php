@@ -24,7 +24,10 @@
                                     <label for="">Invoice</label>
                                 </td>
                                 <td class="col-md-2">
-                                    <label for="">Order</label>
+                                    <label for="">Return Reason</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">Order Status</label>
                                 </td>
                                 <td class="col-md-2">
                                     <label for="">Action</label>
@@ -49,7 +52,19 @@
                                     <label for="">{{$order->invoice_no}}</label>
                                 </td>
                                 <td class="col-md-2">
-                                    <label for=""><span class="badge badge-pill badge-warning" style="background:#12cca7;">{{$order->status}}</span></label>
+                                    <label for="">{{$order->return_reason}}</label>
+                                </td>
+                                <td class="col-md-2">
+                                    <label for="">
+                                    @if($order->return_order==0)    
+                                       <span class="badge badge-pill badge-warning" style="background:#418089;">No Return Request</span>
+                                    @elseif($order->return_order==1)   
+                                       <span class="badge badge-pill badge-warning" style="background:#800000;">Pending</span>
+                                       <span class="badge badge-pill badge-warning" style="background:red;">Return Requested</span>
+                                    @elseif($order->return_order==2)
+                                      <span class="badge badge-pill badge-warning" style="background:#008000;">Success</span>
+                                    @endif  
+                                </label>
                                 </td>
                                 <td class="col-md-2">
                                     <a href="{{url('user/order-details/'.$order->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"> View</i></a>

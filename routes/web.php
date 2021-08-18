@@ -21,6 +21,10 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\ReturnController;
+use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Models\User;
 
 
@@ -292,9 +296,50 @@ Route::prefix('reports')->group(function(){
     
 });
 
-// Admin Reports All User Routes
+// Admin All User Routes
 Route::prefix('allusers')->group(function(){
     Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all-users');
+
+    
+});
+
+// Admin Blog Routes
+Route::prefix('blog')->group(function(){
+    Route::get('/category', [BlogController::class, 'BlogCategory'])->name('blog.category');
+    Route::post('/store', [BlogController::class, 'BlogCategoryStore'])->name('blog_category.store');
+    Route::get('/category/edit/{id}', [BlogController::class, 'BlogCategoryEdit'])->name('blog_category.edit');
+    Route::post('/update', [BlogController::class, 'BlogCategoryUpdate'])->name('blog_category.update');
+    Route::get('/delete/{id}', [BlogController::class, 'BlogCategoryDelete'])->name('blog_category.delete');
+
+    // Admin view blog 
+    Route::get('/view/post', [BlogController::class, 'ViewBlogPost'])->name('view.blog_post');
+    Route::get('/add/post', [BlogController::class, 'AddBlogPost'])->name('add.blog_post');
+    Route::post('/post/store', [BlogController::class, 'StoreBlogPost'])->name('blog-store');
+    Route::get('/post/edit/{id}', [BlogController::class, 'BlogPostEdit'])->name('blog_post.edit');
+    Route::get('/post/delete/{id}', [BlogController::class, 'BlogPostDelete'])->name('blog_post.delete');
+    
+});
+
+// Frontend Blog
+Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog');
+Route::get('/blog/details/{id}', [HomeBlogController::class, 'BlogPostDetail'])->name('blog.details');
+Route::get('blog/category/post/{category_id}', [HomeBlogController::class, 'HomeBlogPostCategory']);
+
+
+// Admin Setting Routes
+Route::prefix('setting')->group(function(){
+    Route::get('/setting', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
+    Route::post('site/setting/update', [SiteSettingController::class, 'SiteSettingUpdate'])->name('update.setting');
+    Route::get('seo/setting', [SiteSettingController::class, 'SeoSetting'])->name('seo.setting');
+    Route::post('seo/setting/update', [SiteSettingController::class, 'SeoSettingUpdate'])->name('update.seo_setting');
+    
+});
+
+// Admin Return Order Routes
+Route::prefix('return')->group(function(){
+    Route::get('/admin/request', [ReturnController::class, 'ReturnRequest'])->name('return.request');
+    Route::get('/admin/return/approve/{order_id}', [ReturnController::class, 'ReturnRequestApprove'])->name('return.approve');
+    Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
 
     
 });

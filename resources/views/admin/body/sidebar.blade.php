@@ -115,7 +115,59 @@
 
             <li class="{{($route=='manage-state')?'active':''}}"><a href="{{route('manage-state')}}"><i class="ti-more"></i>Ship State</a></li>
           </ul>
-        </li> 		  
+        </li> 
+        
+        <li class="treeview {{($prefix=='/blog')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Blog</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+            <li class="{{($route=='blog.category')?'active':''}}"><a href="{{route('blog.category')}}"><i class="ti-more"></i>Blog Category</a></li>
+            <li class="{{($route=='view.blog_post')?'active':''}}"><a href="{{route('view.blog_post')}}"><i class="ti-more"></i>View Blog Post </a></li>
+            <li class="{{($route=='add.blog_post')?'active':''}}"><a href="{{route('add.blog_post')}}"><i class="ti-more"></i>Add Blog Post </a></li>
+
+          
+          </ul>
+        </li> 
+
+        <li class="treeview {{($prefix=='/setting')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Manage Setting</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route=='site.setting')?'active':''}}"><a href="{{route('site.setting')}}"><i class="ti-more"></i>Site Setting</a></li>
+            <li class="{{($route=='seo.setting')?'active':''}}"><a href="{{route('seo.setting')}}"><i class="ti-more"></i>SEO Setting</a></li>
+           
+
+          
+          </ul>
+        </li> 
+
+        <li class="treeview {{($prefix=='/return')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Return Order</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route=='return.request')?'active':''}}"><a href="{{route('return.request')}}"><i class="ti-more"></i>Return Request</a></li>
+            <li class="{{($route=='all.request')?'active':''}}"><a href="{{route('all.request')}}"><i class="ti-more"></i>All Request</a></li>
+           
+
+          
+          </ul>
+        </li> 
 		 
 		  
         <li class="treeview {{($prefix=='/orders')?'active':''}}">
