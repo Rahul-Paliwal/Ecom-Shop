@@ -33,7 +33,12 @@
 
 
 	<span class="date-time">{{ Carbon\Carbon::parse($blogpost->created_at)->diffForHumans()  }}</span>
-
+	
+	<div class="social-media">
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox"></div>
+            
+	</div>
 
 	<p> @if(session()->get('language') == 'hindi') {!!  $blogpost->post_details_hi  !!} @else {!!  $blogpost->post_details_en  !!} @endif
 	</p>
@@ -41,61 +46,100 @@
 
 
 	<div class="social-media">
-		<span>share post:</span>
-		<a href="#"><i class="fa fa-facebook"></i></a>
-		<a href="#"><i class="fa fa-twitter"></i></a>
-		<a href="#"><i class="fa fa-linkedin"></i></a>
-		<a href=""><i class="fa fa-rss"></i></a>
-		<a href="" class="hidden-xs"><i class="fa fa-pinterest"></i></a>
+		<span>Share Post:</span>
+	
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox"></div>
+            
 	</div>
 </div>
 
-
-
-
-
-
-
 			<div class="blog-write-comment outer-bottom-xs outer-top-xs">
+				<div class="row">
+				<div class="blog-review wow fadeInUp animated" style="visibility: visible; animation-name: fadeInUp;">
+	<div class="row">
+		<div class="col-md-12">
+			<h3 class="title-review-comments">Comments</h3>
+		</div>
+		@php
+			$reviews = App\Models\Blog\BlogReview::where('blog_id',$blogpost->id)->latest()->limit(5)->get();
+		@endphp		
+		<div class="col-md-10 col-sm-10 blog-comments outer-bottom-xs">
+		@foreach($reviews as $item)
+		   @if($item->status == 0)
+
+			@else
+			<div class="blog-comments-responce outer-top-xs ">
+				<div class="row">
+					<div class="col-md-2 col-sm-2">
+						<img src="{{asset('upload/no_image.jpg')}}" alt="Responsive image" class="img-rounded img-responsive">
+					</div>
+					<div class="col-md-10 col-sm-10 outer-bottom-xs">
+						<div class="blog-sub-comments inner-bottom-xs">
+							<h4><b>{{ $item->name }}</b></h4>
+							<h6>{{ $item->summary }}</h6>
+							<span class="review-action pull-right">
+							  {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}
+									
+							</span>
+							<p>{{ $item->comments }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		   @endif
+		@endforeach
+		</div>
+	</div>
+</div>
+				</div>
 	<div class="row">
 		<div class="col-md-12">
 			<h4>Leave A Comment</h4>
 		</div>
+		@php
+			$reviews = App\Models\Blog\BlogReview::where('blog_id',$blogpost->id)->latest()->limit(5)->get();
+		@endphp	
+	
+		<form class="register-form" method="post" action="{{route('blog_review.store')}}" role="form">
+			@csrf
 		<div class="col-md-4">
-			<form class="register-form" role="form">
+
+			<input type="hidden" name="blogpost_id" value="{{ $blogpost->id }}">
 				<div class="form-group">
 			    <label class="info-title" for="exampleInputName">Your Name <span>*</span></label>
-			    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputName" placeholder="">
+			    <input type="text" name="name" class="form-control unicase-form-control text-input" id="exampleInputName" required="" placeholder="">
 			  </div>
-			</form>
+		
 		</div>
 		<div class="col-md-4">
-			<form class="register-form" role="form">
+		
 				<div class="form-group">
 			    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-			    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
+			    <input type="email" name="email" class="form-control unicase-form-control text-input" required="" id="exampleInputEmail1" placeholder="">
 			  </div>
-			</form>
+
 		</div>
 		<div class="col-md-4">
-			<form class="register-form" role="form">
+
 				<div class="form-group">
 			    <label class="info-title" for="exampleInputTitle">Title <span>*</span></label>
-			    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputTitle" placeholder="">
+			    <input type="text" name="summary" class="form-control unicase-form-control text-input" required="" id="exampleInputTitle" placeholder="">
 			  </div>
-			</form>
+
 		</div>
 		<div class="col-md-12">
-			<form class="register-form" role="form">
+
 				<div class="form-group">
 			    <label class="info-title" for="exampleInputComments">Your Comments <span>*</span></label>
-			    <textarea class="form-control unicase-form-control" id="exampleInputComments" ></textarea>
+			    <textarea class="form-control unicase-form-control" name="comments" id="exampleInputComments" ></textarea>
 			  </div>
-			</form>
+
 		</div>
 		<div class="col-md-12 outer-bottom-small m-t-20">
 			<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Submit Comment</button>
 		</div>
+		</form>
 	</div>
 </div>
 				</div>
@@ -152,5 +196,7 @@
 
 
 
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-611e0fc5afebb2fc"></script>
 
 @endsection 

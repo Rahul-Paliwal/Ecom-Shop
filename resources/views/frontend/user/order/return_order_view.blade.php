@@ -29,9 +29,6 @@
                                 <td class="col-md-2">
                                     <label for="">Order Status</label>
                                 </td>
-                                <td class="col-md-2">
-                                    <label for="">Action</label>
-                                </td>
                             </tr>
                                 
                             </thead>
@@ -66,10 +63,7 @@
                                     @endif  
                                 </label>
                                 </td>
-                                <td class="col-md-2">
-                                    <a href="{{url('user/order-details/'.$order->id)}}" class="btn btn-sm btn-primary"><i class="fa fa-eye"> View</i></a>
-                                    <a href="{{url('user/invoice_download/'.$order->id)}}" class="btn btn-sm btn-warning" style="margin-top:5px;"><i class="fa fa-download"> Invoice</i></a>
-                                </td>
+                               
                             </tr>
 
                             @empty

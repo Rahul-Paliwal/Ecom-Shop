@@ -12,7 +12,7 @@
 
 <div class="box">
    <div class="box-header with-border">
-     <h3 class="box-title">Product Lists <span class="badge badge-pill badge-success ">{{count($products)}}</span></h3>
+     <h3 class="box-title">Product Stock Lists <span class="badge badge-pill badge-success ">{{count($products)}}</span></h3>
    </div>
    <!-- /.box-header -->
    <div class="box-body">
@@ -35,7 +35,6 @@
                <th>Quantity</th>
                <th>Discount</th>
                <th>Status</th>
-               <th>Action</th>
                </tr>
            </thead>
            <tbody>
@@ -66,17 +65,6 @@
                       <span class="badge badge-pill badge-danger">InActive</span>
                       @endif
                     </td>
-                   <td width="30%">
-                
-                   <a href="{{route('product.edit',$item->id)}}"class="btn btn-info" title="Details Data"><i class="fa fa-eye"></i></a>
-                   <a href="{{route('product.edit',$item->id)}}"class="btn btn-info" title="Edit Data"><i class="fa fa-pencil"></i></a>
-                   <a href="{{route('product.delete',$item->id)}}"class="btn btn-danger" title="Delete Data" id="delete"><i class="fa fa-trash"></i></a>
-                   @if($item->status==1)
-                   <a href="{{route('product.inactive',$item->id)}}"class="btn btn-danger" title="Inactive Now"><i class="fa fa-arrow-down"></i></a>
-                   @else
-                   <a href="{{route('product.active',$item->id)}}"class="btn btn-success" title="Active Now"><i class="fa fa-arrow-up"></i></a>
-                   @endif
-                   </td>
                </tr>
                @endforeach
                </tbody>

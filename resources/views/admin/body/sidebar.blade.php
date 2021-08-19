@@ -25,7 +25,7 @@
       <ul class="sidebar-menu" data-widget="tree">  
 		  
 		<li class="{{($route=='dashboard')?'active':''}}">
-          <a href="index.html">
+          <a href="{{url('admin/dashboard')}}">
             <i data-feather="pie-chart"></i>
 			<span>Dashboard</span>
           </a>
@@ -168,6 +168,41 @@
           
           </ul>
         </li> 
+
+        <li class="treeview {{($prefix=='/review')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Manage User Review</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route=='pending.review')?'active':''}}"><a href="{{route('pending.review')}}"><i class="ti-more"></i>Pending Review</a></li>
+            <li class="{{($route=='publish.review')?'active':''}}"><a href="{{route('publish.review')}}"><i class="ti-more"></i>Publish Review</a></li>
+           
+
+          
+          </ul>
+        </li> 
+
+        
+        <li class="treeview {{($prefix=='/blog_review')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Manage Blog Review</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="{{($route=='blog_pending.review')?'active':''}}"><a href="{{route('blog_pending.review')}}"><i class="ti-more"></i>Blog Pending Review</a></li>
+            <li class="{{($route=='blog_publish.review')?'active':''}}"><a href="{{route('blog_publish.review')}}"><i class="ti-more"></i>Blog Publish Review</a></li>
+           
+
+          
+          </ul>
+        </li> 
 		 
 		  
         <li class="treeview {{($prefix=='/orders')?'active':''}}">
@@ -201,6 +236,21 @@
           <ul class="treeview-menu">
            
             <li class="{{($route=='all-reports')?'active':''}}"><a href="{{route('all-reports')}}"><i class="ti-more"></i>All Reports</a></li>
+            
+          </ul>
+        </li> 
+
+        <li class="treeview {{($prefix=='/stock')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Manage Stock</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+            <li class="{{($route=='product-stock')?'active':''}}"><a href="{{route('product-stock')}}"><i class="ti-more"></i>Product Stock</a></li>
             
           </ul>
         </li> 

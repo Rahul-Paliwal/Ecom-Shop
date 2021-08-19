@@ -254,5 +254,10 @@ class ProductController extends Controller
 
     }
     
-    
+    /////////////////////////---------Stock-----//////////////////////
+    public function ProductStock(Request $request)
+    {
+        $products=Product::latest()->get();
+        return view('backend.product.product_stock',compact('products')); 
+    }
 }
