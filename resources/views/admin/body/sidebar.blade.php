@@ -85,6 +85,7 @@
             <li class="{{($route=='manage-slider')?'active':''}}"><a href="{{route('manage-slider')}}"><i class="ti-more"></i>Manage Sliders</a></li>
           </ul>
         </li> 
+
         <li class="treeview {{($prefix=='/coupons')?'active':''}}">
           <a href="#">
             <i data-feather="file"></i>
@@ -269,7 +270,22 @@
             <li class="{{($route=='all-users')?'active':''}}"><a href="{{route('all-users')}}"><i class="ti-more"></i>All Users</a></li>
             
           </ul>
-        </li>         
+        </li> 
+        
+        <li class="treeview {{($prefix=='/adminuserrole')?'active':''}}">
+          <a href="#">
+            <i data-feather="file"></i>
+            <span>Admin User Role</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-right pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+           
+            <li class="{{($route=='all-admin-user')?'active':''}}"><a href="{{route('all-admin-user')}}"><i class="ti-more"></i>All Admin Users</a></li>
+            
+          </ul>
+        </li> 
       
 
         
