@@ -59,17 +59,17 @@ Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', f
     return view('admin.index');
 })->name('dashboard')->middleware('auth:admin');
 
-
-Route::middleware(['auth', 'admin'])->group(function () {
-
-
-// ADmin Routes
-Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
 Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
 Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
 Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
 Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePass'])->name('admin.change.password');
 Route::post('/update/change/password', [AdminProfileController::class, 'AdminUpdateChangePass'])->name('update.change.password');
+Route::middleware(['auth', 'admin'])->group(function () {
+
+
+// ADmin Routes
+Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
+
 
 
 });
@@ -192,6 +192,9 @@ Route::get('/minicart/product-delete/{rowId}', [CartController::class, 'DelMiniC
 // Add to Wishlist
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 
+
+
+// ////////////////////////--------User Must Login----------//////////////////////////////
 Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'],function(){
 
         // wishlist page
@@ -207,6 +210,9 @@ Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'
         Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
         Route::get('/return/orders/list', [AllUserController::class, 'ReturnOrdersList'])->name('return.orders.list');
         Route::get('/canceled/orders', [AllUserController::class, 'CanceledOrders'])->name('canceled.orders');
+
+        ///////Order Tracking Route //////
+        Route::get('/order/track', [AllUserController::class, 'OrderTracking'])->name('order.tracking');
 });
 
 

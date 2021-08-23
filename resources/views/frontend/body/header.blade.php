@@ -17,6 +17,7 @@
             <li><a href="{{route('wishlist')}}"><i class="icon fa fa-heart"></i>Wishlist</a></li>
             <li><a href="{{route('cart')}}"><i class="icon fa fa-shopping-cart"></i>My Cart</a></li>
             <li><a href="{{route('checkout')}}"><i class="icon fa fa-check"></i>Checkout</a></li>
+            <li><a href="" type="button" data-toggle="modal" data-target="#order_track"><i class="icon fa fa-check"></i>Order Tracking</a></li>
             
             <li>
             @auth
@@ -252,7 +253,38 @@
   </div>
   <!-- /.header-nav --> 
   <!-- ============================================== NAVBAR : END ============================================== --> 
+
   
+
+
+<!-- Modal -->
+<div class="modal fade" id="order_track" tabindex="-1" aria-labelledby="order_track1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="order_track1">Track Your Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <form method="" action="{{route('order.tracking')}}">
+            @csrf
+            <div class="modal-body">
+              <label>Invoice Code</label>
+              <input type="text" name="code" required="" class="form-control" placeholder="Your Order Invoice Number">           
+            </div>
+
+             <button class="btn btn-danger" type="submit" style="margin-left: 17px;"> Track Now </button>
+
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 </header>
 
 <!-- ============================================== HEADER : END ============================================== -->

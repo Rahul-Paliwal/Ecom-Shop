@@ -12,17 +12,17 @@ use Auth;
 class AdminProfileController extends Controller
 {
     public function AdminProfile(){
-        $id = Auth::user()->id;
-		$adminData = Admin::find($id);
+        $id = auth()->guard('admin')->user()->id;   
+		$adminData = Admin::findOrFail($id);
         return view('admin.admin_profile_view',compact('adminData'));
     }
     public function AdminProfileEdit(){
-        $id = Auth::user()->id;
+        $id = auth()->guard('admin')->user()->id;   
 		$editData = Admin::find($id);
         return view('admin.admin_profile_edit',compact('editData'));
     }
     public function AdminProfileStore(Request $request){
-        $id = Auth::user()->id;
+        $id = auth()->guard('admin')->user()->id;   
 		$data = Admin::find($id);
         $data->name=$request->name;
         $data->email=$request->email;
@@ -53,7 +53,8 @@ class AdminProfileController extends Controller
 
 
         ]);
-        $hashedPassword=Admin::find(1)->password;
+
+        $hashedPassword = auth()->guard('admin')->user()->password;
         if(Hash::check($request->oldpassword,$hashedPassword)){
             $admin = Admin::find(Auth::id());
             $admin->password=Hash::make($request->password);
